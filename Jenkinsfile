@@ -4,23 +4,23 @@ pipeline {
     pollSCM '*/01 * * * *'
   }
   stages {
-    stage('SonarQube Analysis') {
-      steps {
-        sh '''
-	 whoami
-	 echo $PATH
-         echo Restore started on `date`.
-         dotnet restore panz.csproj
-         dotnet build panz.csproj -c Release
+//     stage('SonarQube Analysis') {
+//       steps {
+//         sh '''
+// 	 whoami
+// 	 echo $PATH
+//          echo Restore started on `date`.
+//          dotnet restore panz.csproj
+//          dotnet build panz.csproj -c Release
         
-        '''
-      }
-    }
-    stage('Dotnet Publish') {
-      steps {
-        sh 'dotnet publish panz.csproj -c Release'
-      }   
-    }
+//         '''
+//       }
+//     }
+//     stage('Dotnet Publish') {
+//       steps {
+//         sh 'dotnet publish panz.csproj -c Release'
+//       }   
+//     }
    stage('Docker build and push') {
       steps {
         sh '''
